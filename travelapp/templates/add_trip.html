@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add trip</title>
+</head>
+<body>
+    <h2>Add a Trip</h2>
+    <br>
+    <div>
+        <header><a href="/travels">Home</a></header>
+        <form action="/subtrip" method="POST">
+            {% csrf_token %}
+            <p>Destination:</p>
+            <input type="text" name="location" id="">
+            <p>Plans on trip</p>
+            <textarea name="info" id="" cols="30" rows="10"></textarea>
+            <p>Travel Date From:</p>
+            <input type="date" id="" name="sdate" value="" min="2000-01-01" max="2025-12-31" required>
+            <p>Travel Date To:</p>
+            <input type="date" id="" name="edate" value="" min="startdate" max="2025-12-31" required>
+            <button type="submit"> Add</button>
+        </form>
+        <div id="errorswindow">
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            </ul>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header><a href="/travels">Home</a></header>
+    <h1>{{trip.destination}}</h1>
+    <br>
+    <p>Planned by: {{trip.uploader.first_name}}</p>
+    <p>Description : {{trip.description}}</p>
+    <p>Travel Date From : {{trip.startdate}} </p>
+    <p>Travel Date To : {{trip.enddate}} </p>
+    <br>
+
+    <h3>Other users' going on this trip:</h3>
+    {% for i in others %}
+        <p>{{i.first_name}}</p>
+    {% endfor %}
+</body>
+</html>

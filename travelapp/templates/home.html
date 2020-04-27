@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            vertical-align: top;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+
+<body>
+    <header><a href="/logout">log out</a></header>
+    <h1>hello {{myinfo.first_name}} </h1>
+    <h2>Here are your travel plans below</h2>
+    <table style="width:100%">
+        <tr>
+            <th>Destination</th>
+            <th>Travel Start date</th>
+            <th>Travel end date</th>
+            <th>Plan</th>
+        </tr>
+        {% for i in mytrips %}
+        <tr>
+            <td>
+                <a href="travels/destination/{{i.id}}">{{i.destination}}</a>
+            </td>
+            <td>
+                {{i.startdate}}
+            </td>
+            <td>
+                {{i.enddate}}
+            </td>
+            <td>
+                {{i.description}}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <h2>other users travels</h2>
+    <table style="width:100%">
+        <tr>
+            <th>Name</th>
+            <th>Destination</th>
+            <th>Travel Start date</th>
+            <th>Travel end date</th>
+            <th>want to join?</th>
+        </tr>
+        {% for i in notmytrips %}
+        <tr>
+            <td>
+                {{i.uploader.first_name}}
+            </td>
+            <td>
+                <a href="travels/destination/{{i.id}}">{{i.destination}}</a>
+            </td>
+            <td>
+                {{i.startdate}}
+            </td>
+            <td>
+                {{i.enddate}}
+            </td>
+            <td>
+                <a href="/join/{{i.id}}">join?</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/travels/add">Add travel plan</a>
+
+</body>
+
+</html>
